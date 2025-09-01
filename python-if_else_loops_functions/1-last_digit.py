@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 import random
 number = random.randint(-10000, 10000)
+
+mod = abs(number) % 10
 if number < 0:
-    unsigned_number = number * -1
-else:
-    unsigned_number = number
-mod = unsigned_number % 10
+    mod *= -1
+
 if mod > 5:
     print(f"Last digit of {number} is {mod} and is greater than 5")
 elif mod == 0:
