@@ -12,4 +12,3 @@ elif mod == 0:
     print(f"Last digit of {number} is {mod} and is 0")
 else:
     print(f"Last digit of {number} is {mod} and is less than 6 and not 0")
-    
