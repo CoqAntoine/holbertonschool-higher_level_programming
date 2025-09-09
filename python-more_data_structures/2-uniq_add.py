@@ -6,4 +6,4 @@ def uniq_add(my_list=[]):
         if i not in verification_list:
             verification_list.append(i)
             result += i
-    return(result)
+    return (result)
