@@ -6,6 +6,8 @@ It raises a TypeError if arguments are not numbers.
 Floats are cast to integers before addition.
 The result is always returned as an integer.
 """
+
+
 def add_integer(a, b=98):
     """
     Adds two integers or floats after type checking.
