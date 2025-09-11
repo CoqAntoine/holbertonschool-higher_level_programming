@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 This module provides a function to add two integers.
 The function ensures type checking and casting of floats.
