@@ -1,0 +1,47 @@
+import pytest
+from matrix_utils import matrix_divided
+
+def test_matrix_divided_basic():
+    matrix = [
+        [4, 8],
+        [2, 6]
+    ]
+    result = matrix_divided(matrix, 2)
+    assert result == [[2.0, 4.0], [1.0, 3.0]]
+
+def test_matrix_divided_floats():
+    matrix = [
+        [1.5, 2.5],
+        [3.0, 4.0]
+    ]
+    result = matrix_divided(matrix, 0.5)
+    assert result == [[3.0, 5.0], [6.0, 8.0]]
+
+def test_matrix_divided_rounding():
+    matrix = [[1, 2], [3, 4]]
+    result = matrix_divided(matrix, 3)
+    assert result == [[0.33, 0.67], [1.0, 1.33]]
+
+def test_matrix_divided_div_zero():
+    matrix = [[1, 2], [3, 4]]
+    with pytest.raises(ZeroDivisionError):
+        matrix_divided(matrix, 0)
+
+def test_matrix_divided_non_number_div():
+    matrix = [[1, 2], [3, 4]]
+    with pytest.raises(TypeError):
+        matrix_divided(matrix, "a")
+
+def test_matrix_divided_non_number_matrix():
+    matrix = [[1, 2], [3, "a"]]
+    with pytest.raises(TypeError):
+        matrix_divided(matrix, 2)
+
+def test_matrix_divided_inconsistent_row_size():
+    matrix = [[1, 2], [3, 4, 5]]
+    with pytest.raises(TypeError):
+        matrix_divided(matrix, 2)
+
+def test_matrix_divided_empty_matrix():
+    with pytest.raises(TypeError):
+        matrix_divided([], 2)
