@@ -2,23 +2,32 @@
 
 >>> text_indentation("Hello world. How are you?")
 Hello world.
+<BLANKLINE>
 How are you?
+<BLANKLINE>
 
 >>> text_indentation("Warning: Check carefully.")
 Warning:
+<BLANKLINE>
 Check carefully.
+<BLANKLINE>
 
 >>> text_indentation("Is this working? Yes, it is.")
 Is this working?
+<BLANKLINE>
 Yes, it is.
+<BLANKLINE>
 
 >>> text_indentation("No punctuation here")
 No punctuation here
 
 >>> text_indentation("Hello: are you there? Yes.")
 Hello:
+<BLANKLINE>
 are you there?
+<BLANKLINE>
 Yes.
+<BLANKLINE>
 
 >>> text_indentation("")
 
