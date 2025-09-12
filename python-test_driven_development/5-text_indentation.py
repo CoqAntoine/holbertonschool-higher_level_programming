@@ -2,7 +2,7 @@
 """
 Module text_formatter
 
-This module provides a function to print a text with proper indentation 
+This module provides a function to print a text with proper indentation
 after certain punctuation marks (., ?, :).
 """
 
@@ -17,6 +17,9 @@ def text_indentation(text):
     Raises:
         TypeError: If `text` is not a string.
     """
+    if text == "" or text is None:
+        raise TypeError("function need 1 argument")
+
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 

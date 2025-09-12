@@ -29,16 +29,20 @@ are you there?
 Yes.
 <BLANKLINE>
 
->>> text_indentation("")
-
 >>> try:
-...     text_indentation(123)
+...     text_indentation("")
 ... except TypeError as e:
 ...     print(e)
-text must be a string
+function need 1 argument
 
 >>> try:
 ...     text_indentation(None)
+... except TypeError as e:
+...     print(e)
+function need 1 argument
+
+>>> try:
+...     text_indentation(123)
 ... except TypeError as e:
 ...     print(e)
 text must be a string
