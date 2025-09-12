@@ -20,9 +20,10 @@ def print_square(size):
         - Prints a `size` x `size` square of '#' characters, each row followed by
           a newline.
     """
+    if not isinstance(size, int):
+        raise TypeError("size must be an integer")
     if size < 0:
-        print("size must be >= 0")
-        return
+        raise ValueError("size must be >= 0")
     for row in range(size):
         for col in range(size):
             print('#', end='')
