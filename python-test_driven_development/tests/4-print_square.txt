@@ -27,3 +27,15 @@ size must be an integer
 ... except TypeError as e:
 ...     print(e)
 size must be an integer
+
+>>> try:
+...     print_square("")
+... except TypeError as e:
+...     print(e)
+function need 1 argument
+
+>>> try:
+...     print_square(None)
+... except TypeError as e:
+...     print(e)
+function need 1 argument

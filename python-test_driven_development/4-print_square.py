@@ -20,6 +20,8 @@ def print_square(size):
         - Prints a `size` x `size` square of '#' characters, each row followed by
           a newline.
     """
+    if size == "" or size is None:
+        raise TypeError("function need 1 argument")
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
     if size < 0:
