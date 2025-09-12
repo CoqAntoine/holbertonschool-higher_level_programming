@@ -20,16 +20,16 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    skip_space = False  # Flag to skip one space after punctuation
+    skip_spaces = False
     for char in text:
-        if skip_space:
-            skip_space = False
+        if skip_spaces:
             if char == " ":
-                continue  # Ignore the first space after punctuation
+                continue  # ignore consecutive spaces
+            skip_spaces = False
 
         if char in ".?:":
             print(char)
-            print()  # extra newline to make 2 new lines total
-            skip_space = True
+            print()  # two new lines
+            skip_spaces = True
         else:
             print(char, end="")
