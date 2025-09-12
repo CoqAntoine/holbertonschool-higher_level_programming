@@ -1,0 +1,41 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("Hello world. How are you?")
+Hello world.
+How are you?
+
+>>> text_indentation("Warning: Check carefully.")
+Warning:
+Check carefully.
+
+>>> text_indentation("Is this working? Yes, it is.")
+Is this working?
+Yes, it is.
+
+>>> text_indentation("No punctuation here")
+No punctuation here
+
+>>> text_indentation("Hello: are you there? Yes.")
+Hello:
+are you there?
+Yes.
+
+>>> text_indentation("")
+
+>>> try:
+...     text_indentation(123)
+... except TypeError as e:
+...     print(e)
+text must be a string
+
+>>> try:
+...     text_indentation(None)
+... except TypeError as e:
+...     print(e)
+text must be a string
+
+>>> try:
+...     text_indentation(["Hello", "world"])
+... except TypeError as e:
+...     print(e)
+text must be a string
