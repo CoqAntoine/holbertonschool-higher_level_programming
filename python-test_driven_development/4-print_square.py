@@ -18,8 +18,8 @@ def print_square(size):
     Behavior:
         - If `size` is negative, prints an error message: "size must be >= 0"
         - If `size` is 0, prints nothing.
-        - Prints a `size` x `size` square of '#' characters, each row followed by
-          a newline.
+        - Prints a `size` x `size` square of '#' characters, each row followed
+          by a newline.
     """
     if size == "" or size is None:
         raise TypeError("function need 1 argument")
