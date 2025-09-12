@@ -22,9 +22,9 @@ TypeError: last_name must be a string
 >>> say_my_name("")
 Traceback (most recent call last):
     ...
-TypeError: say_my_name() missing 1 required argument: 'first_name'
+TypeError: function need between 1 and 2 arguments
 
 >>> say_my_name(None)
 Traceback (most recent call last):
     ...
-TypeError: say_my_name() missing 1 required argument: 'first_name'
+TypeError: function need between 1 and 2 arguments
