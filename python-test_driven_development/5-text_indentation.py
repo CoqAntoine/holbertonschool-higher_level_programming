@@ -21,7 +21,7 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
     for character in text:
-        if do_not_space:
+        if do_not_space and character == ' ':
             do_not_space = False
             continue
         if character == '.' or character == '?' or character == ':':
