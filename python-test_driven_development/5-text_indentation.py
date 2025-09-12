@@ -26,6 +26,7 @@ def text_indentation(text):
             continue
         if character == '.' or character == '?' or character == ':':
             print(character)
+            print()
             do_not_space = True
         else:
             print(character, end="")
