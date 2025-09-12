@@ -20,6 +20,8 @@ def say_my_name(first_name, last_name=""):
         TypeError: If `first_name` is not a string.
         TypeError: If `last_name` is not a string.
     """
+    if first_name == "" or first_name == None:
+        raise TypeError("say_my_name() missing 1 required argument: 'first_name'")
     if not isinstance(first_name, (str)):
         raise TypeError("first_name must be a string")
     if not isinstance(last_name, (str)):
