@@ -1,47 +1,62 @@
-import pytest
-from matrix_utils import matrix_divided
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 
-def test_matrix_divided_basic():
-    matrix = [
-        [4, 8],
-        [2, 6]
-    ]
-    result = matrix_divided(matrix, 2)
-    assert result == [[2.0, 4.0], [1.0, 3.0]]
+# 1. List of Lists of integers / div = integer
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, 2)
+[[0.5, 1.0], [1.5, 2.0]]
 
-def test_matrix_divided_floats():
-    matrix = [
-        [1.5, 2.5],
-        [3.0, 4.0]
-    ]
-    result = matrix_divided(matrix, 0.5)
-    assert result == [[3.0, 5.0], [6.0, 8.0]]
+# 2. List of Lists of integers / div = string
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, "2")
+Traceback (most recent call last):
+    ...
+TypeError: div must be a number
 
-def test_matrix_divided_rounding():
-    matrix = [[1, 2], [3, 4]]
-    result = matrix_divided(matrix, 3)
-    assert result == [[0.33, 0.67], [1.0, 1.33]]
+# 3. List of Lists of integers / div = 0
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, 0)
+Traceback (most recent call last):
+    ...
+ZeroDivisionError: division by zero
 
-def test_matrix_divided_div_zero():
-    matrix = [[1, 2], [3, 4]]
-    with pytest.raises(ZeroDivisionError):
-        matrix_divided(matrix, 0)
+# 4. Not a list of lists of integers / div = integer
+>>> matrix = "not a matrix"
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-def test_matrix_divided_non_number_div():
-    matrix = [[1, 2], [3, 4]]
-    with pytest.raises(TypeError):
-        matrix_divided(matrix, "a")
+# 5. List of lists of integers but not rectangular / div = integer
+>>> matrix = [[1, 2], [3, 4, 5]]
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: Each row of the matrix must have the same size
 
-def test_matrix_divided_non_number_matrix():
-    matrix = [[1, 2], [3, "a"]]
-    with pytest.raises(TypeError):
-        matrix_divided(matrix, 2)
+# 6. List of Lists of integers / div = float('inf') => all values == 0.0
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
 
-def test_matrix_divided_inconsistent_row_size():
-    matrix = [[1, 2], [3, 4, 5]]
-    with pytest.raises(TypeError):
-        matrix_divided(matrix, 2)
+# 7. List of Lists of integers with one float('inf') / div = integer
+>>> matrix = [[1, 2], [3, float('inf')]]
+>>> matrix_divided(matrix, 2)
+[[0.5, 1.0], [1.5, inf]]
 
-def test_matrix_divided_empty_matrix():
-    with pytest.raises(TypeError):
-        matrix_divided([], 2)
+# 8. List of Lists of integers with one float('nan') / div = float('nan')
+>>> matrix = [[1, 2], [3, float('nan')]]
+>>> matrix_divided(matrix, float('nan'))
+[[nan, nan], [nan, nan]]
+
+# 9. Missing one argument
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix)
+Traceback (most recent call last):
+    ...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+# 10. Missing two arguments
+>>> matrix_divided()
+Traceback (most recent call last):
+    ...
+TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
