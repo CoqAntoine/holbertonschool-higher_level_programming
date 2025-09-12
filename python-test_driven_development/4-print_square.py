@@ -6,6 +6,7 @@ This module provides a function to print a square made of the '#' character
 to the console.
 """
 
+
 def print_square(size):
     """
     Prints a square made of the '#' character to the console.
@@ -15,7 +16,7 @@ def print_square(size):
                     of rows and columns. Must be >= 0.
 
     Behavior:
-        - If `size` is negative, prints an error message: "size must be >= 0".
+        - If `size` is negative, prints an error message: "size must be >= 0"
         - If `size` is 0, prints nothing.
         - Prints a `size` x `size` square of '#' characters, each row followed by
           a newline.
