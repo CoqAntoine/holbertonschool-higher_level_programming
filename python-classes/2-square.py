@@ -10,7 +10,8 @@ class Square:
     A class used to represent a Square.
 
     Attributes:
-        size (int): The length of a side of the square. Must be a non-negative integer.
+        size (int): The length of a side of the square.
+        Must be a non-negative integer.
     """
 
     def __init__(self, size=0):
