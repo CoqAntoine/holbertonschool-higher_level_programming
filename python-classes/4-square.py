@@ -39,14 +39,15 @@ class Square:
         The value must be a non-negative integer.
         """
         return self.__size
-    
+
     @size.setter
     def size(self, value):
         """
         Set a new size value for the square.
 
         Args:
-            value (int): The new size of the square. Must be a non-negative integer.
+            value (int): The new size of the square.
+            Must be a non-negative integer.
 
         Raises:
             TypeError: If value is not an integer.
@@ -57,7 +58,7 @@ class Square:
         if value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
- 
+
     def area(self):
         """
         Calculate the area of a rectangle
