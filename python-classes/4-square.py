@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
 This module defines a `Square` class that represents a geometric square.
-It can be extended with attributes and methods for manipulating squares.
+It includes validation for the size attribute and provides methods to
+calculate the area.
 """
 
 
@@ -12,6 +13,9 @@ class Square:
     Attributes:
         size (int): The length of a side of the square.
         Must be a non-negative integer.
+
+    Methods:
+        area(): Returns the area of the square.
     """
 
     def __init__(self, size=0):
@@ -61,9 +65,9 @@ class Square:
 
     def area(self):
         """
-        Calculate the area of a rectangle
+        Calculate the area of the square.
 
-        Args:
-            size (int): The length of a side of the square.
+        Returns:
+            int: The area of the square (size * size).
         """
         return self.__size * self.__size
