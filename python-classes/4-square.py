@@ -52,13 +52,17 @@ class Square:
             TypeError: If value is not an integer.
             ValueError: If value is less than 0.
         """
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
         self.__size = value
  
     def area(self):
         """
-        Calculate the area of the square.
+        Calculate the area of a rectangle
 
-        Returns:
-            int: The area of the square (size * size).
+        Args:
+            size (int): The length of a side of the square.
         """
         return self.__size * self.__size
