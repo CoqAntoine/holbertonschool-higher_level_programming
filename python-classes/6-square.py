@@ -37,8 +37,8 @@ class Square:
                 2 non-negative integers.
             ValueError: If size is less than 0.
         """
-        self.size = size
-        self.position = position
+        self.__size = size
+        self.__position = position
 
     @property
     def size(self):
