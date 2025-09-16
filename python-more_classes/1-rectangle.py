@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
 This module defines a `Rectangle` class that represents a geometric rectangle.
-It provides attributes for width and height with validation, and includes
-methods to calculate the area and perimeter of the rectangle.
+It provides attributes for width and height with validation and can be extended
+with additional methods for manipulating rectangles.
 """
 
 
@@ -17,9 +17,9 @@ class Rectangle:
             Must be a non-negative integer.
 
     Methods:
-        area(): Returns the area of the rectangle.
-        perimeter(): Returns the perimeter of the rectangle.
+        (to be added later, e.g., area() to compute the area of the rectangle)
     """
+
     def __init__(self, width=0, height=0):
         """
         Initialize a new Rectangle instance.
@@ -90,24 +90,3 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
-
-    def area(self):
-        """
-        Calculate the area of the rectangle.
-
-        Returns:
-            int: The area of the rectangle (width * height).
-        """
-        return self.__width * self.height
-
-    def perimeter(self):
-        """
-        Calculate the perimeter of the rectangle.
-
-        Returns:
-            int: The perimeter of the rectangle.
-                Returns 0 if either width or height is 0.
-        """
-        if self.__width == 0 or self.__height == 0:
-            return 0
-        return (self.__width * 2) + (self.height * 2)
