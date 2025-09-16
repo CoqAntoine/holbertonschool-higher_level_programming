@@ -11,8 +11,10 @@ class Rectangle:
     A class used to represent a Rectangle.
 
     Attributes:
-        width (int): The width of the rectangle. Must be a non-negative integer.
-        height (int): The height of the rectangle. Must be a non-negative integer.
+        width (int): The width of the rectangle.
+            Must be a non-negative integer.
+        height (int): The height of the rectangle.
+            Must be a non-negative integer.
 
     Methods:
         (to be added later, e.g., area() to compute the area of the rectangle)
@@ -42,7 +44,7 @@ class Rectangle:
         Must be a non-negative integer.
         """
         return self.__width
-    
+
     @width.setter
     def width(self, value):
         """
@@ -69,7 +71,7 @@ class Rectangle:
         Must be a non-negative integer.
         """
         return self.__height
-    
+
     @height.setter
     def height(self, value):
         """
