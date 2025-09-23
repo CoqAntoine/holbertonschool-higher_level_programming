@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """
-Module: class_checker
-
 This module provides functions to check the type or class of an object,
 including inheritance relationships.
 """
