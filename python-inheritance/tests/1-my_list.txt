@@ -1,71 +1,39 @@
-import unittest
-from io import StringIO
-import sys
+>>> MyList = __import__('1-my_list').MyList
 
-# On suppose que la classe MyList est définie dans mylist.py
-from mylist import MyList
+>>> m = MyList()              # check instantiation
+>>> isinstance(m, MyList)
+True
 
+>>> issubclass(MyList, list)  # check inherits from list
+True
 
-class TestMyList(unittest.TestCase):
+>>> str(MyList([1, 2, 3]))    # check __str__
+'[1, 2, 3]'
 
-    def setUp(self):
-        """Rediriger la sortie standard pour capturer print()"""
-        self._stdout = sys.stdout
-        sys.stdout = StringIO()
+>>> m = MyList()              # check append()
+>>> m.append(10)
+>>> m
+[10]
 
-    def tearDown(self):
-        """Restaurer la sortie standard"""
-        sys.stdout = self._stdout
+>>> m = MyList([1, 2, 3])     # check print_sorted() with sorted append
+>>> m.print_sorted()
+[1, 2, 3]
 
-    def get_output(self):
-        """Retourne la sortie capturée par print()"""
-        return sys.stdout.getvalue().strip()
+>>> m = MyList([3, 1, 2])     # check print_sorted() with not sorted append
+>>> m.print_sorted()
+[1, 2, 3]
 
-    def test_instantiation(self):
-        lst = MyList()
-        self.assertIsInstance(lst, MyList)
+>>> m = MyList([3, -1, 2])    # check print_sorted() with negative number
+>>> m.print_sorted()
+[-1, 2, 3]
 
-    def test_inherits_from_list(self):
-        lst = MyList()
-        self.assertTrue(issubclass(MyList, list))
-        self.assertIsInstance(lst, list)
+>>> m = MyList()              # check print_sorted() with empty list
+>>> m.print_sorted()
+[]
 
-    def test_str(self):
-        lst = MyList([1, 2, 3])
-        self.assertEqual(str(lst), "[1, 2, 3]")
-
-    def test_append(self):
-        lst = MyList()
-        lst.append(10)
-        self.assertEqual(lst, [10])
-
-    def test_print_sorted_sorted_append(self):
-        lst = MyList([1, 2, 3])
-        lst.print_sorted()
-        self.assertEqual(self.get_output(), "[1, 2, 3]")
-
-    def test_print_sorted_not_sorted_append(self):
-        lst = MyList([3, 1, 2])
-        lst.print_sorted()
-        self.assertEqual(self.get_output(), "[1, 2, 3]")
-
-    def test_print_sorted_with_negative_number(self):
-        lst = MyList([3, -1, 2])
-        lst.print_sorted()
-        self.assertEqual(self.get_output(), "[-1, 2, 3]")
-
-    def test_print_sorted_empty_list(self):
-        lst = MyList()
-        lst.print_sorted()
-        self.assertEqual(self.get_output(), "[]")
-
-    def test_print_sorted_returns_new_list(self):
-        lst = MyList([3, 1, 2])
-        before = lst.copy()
-        lst.print_sorted()
-        after = lst
-        self.assertEqual(before, after)  # l'objet original n'est pas modifié
-
-
-if __name__ == "__main__":
-    unittest.main()
+>>> m = MyList([3, 1, 2])     # check print_sorted() returns a new list
+>>> before = m.copy()
+>>> m.print_sorted()
+[1, 2, 3]
+>>> m == before
+True
