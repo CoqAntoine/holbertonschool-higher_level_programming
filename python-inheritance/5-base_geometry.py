@@ -8,10 +8,5 @@ class BaseGeometry:
     BaseGeometry class.
 
     This is an empty base class intended to be inherited by other geometry classes.
-    
-    Example:
-        >>> bg = BaseGeometry()
-        >>> type(bg)
-        <class 'base_geometry.BaseGeometry'>
     """
     pass
