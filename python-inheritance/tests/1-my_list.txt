@@ -1,0 +1,71 @@
+import unittest
+from io import StringIO
+import sys
+
+# On suppose que la classe MyList est définie dans mylist.py
+from mylist import MyList
+
+
+class TestMyList(unittest.TestCase):
+
+    def setUp(self):
+        """Rediriger la sortie standard pour capturer print()"""
+        self._stdout = sys.stdout
+        sys.stdout = StringIO()
+
+    def tearDown(self):
+        """Restaurer la sortie standard"""
+        sys.stdout = self._stdout
+
+    def get_output(self):
+        """Retourne la sortie capturée par print()"""
+        return sys.stdout.getvalue().strip()
+
+    def test_instantiation(self):
+        lst = MyList()
+        self.assertIsInstance(lst, MyList)
+
+    def test_inherits_from_list(self):
+        lst = MyList()
+        self.assertTrue(issubclass(MyList, list))
+        self.assertIsInstance(lst, list)
+
+    def test_str(self):
+        lst = MyList([1, 2, 3])
+        self.assertEqual(str(lst), "[1, 2, 3]")
+
+    def test_append(self):
+        lst = MyList()
+        lst.append(10)
+        self.assertEqual(lst, [10])
+
+    def test_print_sorted_sorted_append(self):
+        lst = MyList([1, 2, 3])
+        lst.print_sorted()
+        self.assertEqual(self.get_output(), "[1, 2, 3]")
+
+    def test_print_sorted_not_sorted_append(self):
+        lst = MyList([3, 1, 2])
+        lst.print_sorted()
+        self.assertEqual(self.get_output(), "[1, 2, 3]")
+
+    def test_print_sorted_with_negative_number(self):
+        lst = MyList([3, -1, 2])
+        lst.print_sorted()
+        self.assertEqual(self.get_output(), "[-1, 2, 3]")
+
+    def test_print_sorted_empty_list(self):
+        lst = MyList()
+        lst.print_sorted()
+        self.assertEqual(self.get_output(), "[]")
+
+    def test_print_sorted_returns_new_list(self):
+        lst = MyList([3, 1, 2])
+        before = lst.copy()
+        lst.print_sorted()
+        after = lst
+        self.assertEqual(before, after)  # l'objet original n'est pas modifié
+
+
+if __name__ == "__main__":
+    unittest.main()
