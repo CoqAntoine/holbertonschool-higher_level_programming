@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """
-lookup_module.py
-
 This module provides a simple utility function to inspect Python objects.
 """
 
