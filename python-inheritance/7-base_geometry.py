@@ -4,13 +4,14 @@ This module defines the BaseGeometry class with unimplemented area
 and a method to validate integer values.
 """
 
+
 class BaseGeometry:
     """
     BaseGeometry class.
 
     Public Methods:
         area(): Raises an Exception indicating the method is not implemented.
-        integer_validator(name, value): Validates that value is a positive integer.
+        integer_validator(name, value): Validates that value is an integer.
     """
 
     def area(self):
