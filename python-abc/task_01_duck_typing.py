@@ -55,7 +55,7 @@ class Circle(Shape):
         Args:
             radius (float): The radius of the circle.
         """
-        self.radius = abs(radius)
+        self.__radius = abs(radius)
 
     def area(self):
         """
@@ -67,7 +67,7 @@ class Circle(Shape):
         Returns:
             float: The area of the circle.
         """
-        return math.pi * self.radius ** 2
+        return math.pi * self.__radius ** 2
 
     def perimeter(self):
         """
@@ -79,7 +79,7 @@ class Circle(Shape):
         Returns:
             float: The perimeter of the circle.
         """
-        return 2 * math.pi * self.radius
+        return 2 * math.pi * self.__radius
 
 
 class Rectangle(Shape):
@@ -99,8 +99,8 @@ class Rectangle(Shape):
             width (float): The width of the rectangle.
             height (float): The height of the rectangle.
         """
-        self.width = abs(width)
-        self.height = abs(height)
+        self.__width = abs(width)
+        self.__height = abs(height)
 
     def area(self):
         """
@@ -112,7 +112,7 @@ class Rectangle(Shape):
         Returns:
             float: The area of the rectangle.
         """
-        return self.width * self.height
+        return self.__width * self.__height
 
     def perimeter(self):
         """
@@ -124,7 +124,7 @@ class Rectangle(Shape):
         Returns:
             float: The perimeter of the rectangle.
         """
-        return self.width * 2 + self.height * 2
+        return self.__width * 2 + self.__height * 2
 
 
 def shape_info(value):
