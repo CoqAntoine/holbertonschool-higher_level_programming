@@ -137,8 +137,6 @@ def shape_info(value):
     Prints:
         Area and perimeter of the given shape.
     """
-    A = value.area()
-    P = value.perimeter()
 
-    print("Area:", A)
-    print("Perimeter:", P)
+    print("Area:", value.area())
+    print("Perimeter:", value.perimeter())
