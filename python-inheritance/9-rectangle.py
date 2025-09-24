@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """
+Module: rectangle
+
 This module defines the Rectangle class that inherits from BaseGeometry.
 """
 
@@ -37,3 +39,21 @@ class Rectangle(BaseGeometry):
         self.integer_validator("height", height)
         self.__width = width
         self.__height = height
+
+    def area(self):
+        """
+        Compute the area of the rectangle.
+
+        Returns:
+            int: The area of the rectangle (width * height).
+        """
+        return self.__width * self.__height
+
+    def __str__(self):
+        """
+        Return the rectangle description.
+
+        Returns:
+            str: A string in the format [Rectangle] <width>/<height>.
+        """
+        return f"[Rectangle] {self.__width}/{self.__height}"
