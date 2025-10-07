@@ -7,6 +7,7 @@ and saves the data into a CSV file.
 import requests
 import csv
 
+
 def fetch_and_print_posts():
     """
     Fetch posts from the JSONPlaceholder API and print their titles.
@@ -28,6 +29,7 @@ def fetch_and_print_posts():
         r_json = r.json()
         for i in r_json:
             print(i['title'])
+
 
 def fetch_and_save_posts():
     """
