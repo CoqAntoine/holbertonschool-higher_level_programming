@@ -62,7 +62,10 @@ def fetch_and_save_posts():
             dict_list.append(new_dict)
         fields = ['id', 'title', 'body']
         with open("posts.csv", "w") as csv_file:
-            write_dict = csv.DictWriter(csv_file, fieldnames=fields)
-            write_dict.writeheader()
-            write_dict.writerows(dict_list)
+            w_dict = csv.DictWriter(csv_file, fieldnames=fields)
+            w_dict.writeheader()
+            w_dict.writerows(dict_list)
         return csv_file
+
+fetch_and_print_posts()
+fetch_and_save_posts()
