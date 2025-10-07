@@ -66,6 +66,3 @@ def fetch_and_save_posts():
             w_dict.writeheader()
             w_dict.writerows(dict_list)
         return csv_file
-
-fetch_and_print_posts()
-fetch_and_save_posts()
