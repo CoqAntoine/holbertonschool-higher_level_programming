@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A simple RESTful API built 
+"""A simple RESTful API built
 with Flask."""
 
 from flask import Flask, jsonify, request
