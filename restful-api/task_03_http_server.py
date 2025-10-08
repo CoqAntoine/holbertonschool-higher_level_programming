@@ -28,7 +28,8 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(status).encode())
         elif self.path == '/info':
-            info = {"version": "1.0", "description": "A simple API built with http.server"}
+            info = {"version": "1.0", "description":
+                    "A simple API built with http.server"}
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
@@ -45,5 +46,6 @@ def run(server_class=HTTPServer, handler_class=SimpleRequestHandler):
     httpd = server_class(server_address, handler_class)
     print("Server running on port 8000...")
     httpd.serve_forever()  # le serveur tourne jusqu’à ce qu’on l’arrête
+
 
 run()
