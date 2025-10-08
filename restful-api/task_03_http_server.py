@@ -8,7 +8,13 @@ import json
 
 
 class SimpleRequestHandler(BaseHTTPRequestHandler):
+    """
+    z
+    """
     def do_GET(self):
+        """
+        z
+        """
         if self.path == '/':
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
@@ -42,10 +48,11 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
 
 
 def run(server_class=HTTPServer, handler_class=SimpleRequestHandler):
-    server_address = ('', 8000)  # '' = toutes les interfaces, port 8000
+    server_address = ('', 8000)
     httpd = server_class(server_address, handler_class)
     print("Server running on port 8000...")
-    httpd.serve_forever()  # le serveur tourne jusqu’à ce qu’on l’arrête
+    httpd.serve_forever()
 
 
-run()
+if __name__ == '__main__':
+    run()
