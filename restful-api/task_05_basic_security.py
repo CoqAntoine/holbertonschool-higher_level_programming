@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-A Flask RESTful API with Basic Auth,
+A Flask RESTful API with Basic Auth.
+
 JWT Auth, and role-based access.
 """
 
