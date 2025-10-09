@@ -1,31 +1,38 @@
 #!/usr/bin/python3
-"""A basic security for RESTful
-API built with Flask."""
+"""A Flask RESTful API with Basic Auth, JWT Auth, and role-based access."""
 
 from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
     JWTManager, create_access_token, jwt_required, get_jwt_identity
 )
-from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__)
 
+# --- Users stored in memory ---
 users = {
-    "user1": {"username": "user1", "password":
-              generate_password_hash("password"), "role": "user"},
-    "admin1": {"username": "admin1", "password":
-               generate_password_hash("password"), "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("password"),
+        "role": "admin"
+    }
 }
 
+# --- Basic Authentication setup ---
 auth = HTTPBasicAuth()
 
 
 @auth.verify_password
 def verify_password(username, password):
     """Verify username and password for Basic Authentication."""
-    if username in users and check_password_hash(users[username]['password'],
-                                                 password):
+    if username in users and check_password_hash(
+            users[username]['password'], password):
         return username
 
 
@@ -36,6 +43,7 @@ def basic_protected():
     return jsonify({"message": "Basic Auth: Access Granted"})
 
 
+# --- JWT Configuration ---
 app.config["JWT_SECRET_KEY"] = "ton_secret_ultra_long_et_securise"
 jwt = JWTManager(app)
 
@@ -47,10 +55,12 @@ def login():
     username = data.get("username")
     password = data.get("password")
 
-    if username in users and check_password_hash(users[username]['password'],
-                                                 password):
-        token = create_access_token(identity={"username": username,
-                                              "role": users[username]['role']})
+    if username in users and check_password_hash(
+            users[username]['password'], password):
+        token = create_access_token(identity={
+            "username": username,
+            "role": users[username]['role']
+        })
         return jsonify(access_token=token), 200
     return jsonify({"error": "Invalid credentials"}), 401
 
@@ -72,6 +82,7 @@ def admin_only():
     return jsonify({"message": "Admin Access: Granted"})
 
 
+# --- JWT Error Handlers ---
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     """Handle missing or invalid JWT tokens."""
@@ -88,6 +99,18 @@ def handle_invalid_token_error(err):
 def handle_expired_token_error(jwt_header, jwt_payload):
     """Handle expired JWT tokens."""
     return jsonify({"error": "Token has expired"}), 401
+
+
+@jwt.revoked_token_loader
+def handle_revoked_token_error(jwt_header, jwt_payload):
+    """Handle revoked JWT tokens."""
+    return jsonify({"error": "Token has been revoked"}), 401
+
+
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(jwt_header, jwt_payload):
+    """Handle fresh token requirement errors."""
+    return jsonify({"error": "Fresh token required"}), 401
 
 
 if __name__ == "__main__":
