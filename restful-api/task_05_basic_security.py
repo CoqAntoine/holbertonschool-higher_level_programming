@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""A Flask RESTful API with Basic Auth, JWT Auth, and role-based access."""
+"""A Flask RESTful API with Basic Auth,
+JWT Auth, and role-based access."""
 
 from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
