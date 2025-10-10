@@ -5,8 +5,7 @@ from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
-    JWTManager, create_access_token, jwt_required,
-    get_jwt_identity, get_jwt
+    JWTManager, create_access_token, jwt_required, get_jwt
 )
 
 app = Flask(__name__)
@@ -34,7 +33,7 @@ def verify_password(username, password):
 @app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
-    """Basic Auth protected route."""
+    """Protect Auth route."""
     return jsonify({"message": "Basic Auth: Access Granted"})
 
 
