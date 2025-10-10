@@ -9,17 +9,23 @@ from flask_jwt_extended import (
 )
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+
+app.config["JWT_SECRET_KEY"] = "super_secrect_key"
+jwt = JWTManager(app)
 
 users = {
-    "user1": {"username": "user1",
-              "password": generate_password_hash("password"),
-              "role": "user"},
-    "admin1": {"username": "admin1",
-               "password": generate_password_hash("password"),
-               "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("password"),
+        "role": "admin"
+    }
 }
-
-auth = HTTPBasicAuth()
 
 
 @auth.verify_password
@@ -34,11 +40,7 @@ def verify_password(username, password):
 @auth.login_required
 def basic_protected():
     """Protect Auth route."""
-    return jsonify({"message": "Basic Auth: Access Granted"})
-
-
-app.config["JWT_SECRET_KEY"] = "ton_secret_ultra_long_et_securise"
-jwt = JWTManager(app)
+    return "Basic Auth: Access Granted"
 
 
 @app.route('/login', methods=['POST'])
@@ -71,7 +73,7 @@ def admin_only():
     claims = get_jwt()
     if claims["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
-    return jsonify({"message": "Admin Access: Granted"})
+    return "Admin Access: Granted", 200
 
 
 @jwt.unauthorized_loader
@@ -90,6 +92,18 @@ def handle_invalid_token_error(err):
 def handle_expired_token_error(jwt_header, jwt_payload):
     """Handle expired token."""
     return jsonify({"error": "Token has expired"}), 401
+
+
+@jwt.revoked_token_loader
+def handle_revoked_token(jwt_header, jwt_payload):
+    """Handle revoked token."""
+    return jsonify({"error": "Token has been revoked"}), 401
+
+
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token(jwt_header, jwt_payload):
+    """Handle not fresh token."""
+    return jsonify({"error": "Fresh token required"}), 401
 
 
 if __name__ == "__main__":
