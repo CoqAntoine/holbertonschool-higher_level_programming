@@ -1,7 +1,7 @@
 -- Docstring
 
-SELECT t.title, g.name AS genre
-FROM tv_shows t
-LEFT JOIN tv_show_genres tg ON t.id = tg.tv_show_id
-LEFT JOIN genres g ON tg.genre_id = g.id
-ORDER BY t.title ASC, genre ASC;
+SELECT tv_shows.title, tv_genres.name
+FROM tv_shows
+LEFT JOIN tv_show_genres ON tv_shows.id = tv_show_genres.tv_show_id
+LEFT JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+ORDER BY tv_shows.title ASC, tv_genres.name ASC;
