@@ -1,4 +1,7 @@
 -- Creates the table id_not_null
+-- id_not_null description:
+--      id INT with the default value 1
+--      name VARCHAR(256)
 
 -- Create the table id_not_null if it does not already exist
 CREATE TABLE IF NOT EXISTS id_not_null (
