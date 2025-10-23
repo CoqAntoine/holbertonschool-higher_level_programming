@@ -27,10 +27,10 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Create SQL query using format with user input
-    query = """SELECT cities.name 
+    query = """SELECT cities.name
     FROM cities
     JOIN states ON cities.state_id = states.id
-    WHERE states.name = %s 
+    WHERE states.name = %s
     ORDER BY cities.id ASC"""
 
     # Execute the query
