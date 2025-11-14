@@ -17,8 +17,11 @@ def contact():
 
 @app.route('/items')
 def items():
-    with open('items.json', 'r') as f:
-        items = json.load(f)
+    try:
+        with open('items.json', 'r') as f:
+            items = json.load(f)
+    except Exception as e:
+        items = []
     items_list = items.get("items", [])
     return render_template('items.html', items=items_list)
 
